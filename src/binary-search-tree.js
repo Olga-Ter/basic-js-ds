@@ -105,14 +105,14 @@ class BinarySearchTree {
     if (this.Root === null) {
       return null;
     }
-    else {
+    else if (this.has(data)) {
       function removeNode (node, data) {
         if (data < node.data) {
-          removeNode (node.left, data);
+          node.left = removeNode (node.left, data);
           return node;
         }
         else if (data > node.data) {
-          removeNode (node.right, data);
+          node.right = removeNode (node.right, data);
           return node;
         }
         else {
@@ -122,7 +122,7 @@ class BinarySearchTree {
           }
           else if (node.left === null) {
             node = node.right;
-            return node;
+            return node;            
           }
           else if (node.right === null) {
             node = node.left;
@@ -135,7 +135,7 @@ class BinarySearchTree {
                 ans = node;
               }
               else {
-                minNode (node.left);
+                return minNode (node.left);
               }
               return ans;
             };
